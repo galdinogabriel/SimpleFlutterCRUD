@@ -33,9 +33,7 @@ class UserTile extends StatelessWidget {
             IconButton(
               color: Theme.of(context).errorColor,
               icon: Icon(Icons.delete),
-              onPressed: () {
-                Provider.of<UsersProvider>(context).remove(user);
-              },
+              onPressed: () {},
             ),
           ],
         ),

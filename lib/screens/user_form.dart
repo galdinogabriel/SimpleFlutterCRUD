@@ -6,8 +6,19 @@ import 'package:simpleFlutterCRUD/provider/users_provider.dart';
 class UserForm extends StatelessWidget {
   final _form = GlobalKey<FormState>();
   final Map<String, Object> _formData = {};
+
+  void _loadFormData(User user) {
+    if (user != null) {
+      _formData['name'] = user.name;
+      _formData['email'] = user.email;
+      _formData['profileURL'] = user.profileAvatar;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final User user = ModalRoute.of(context).settings.arguments as User;
+    _loadFormData(user);
     return Scaffold(
       appBar: AppBar(
         title: Text("Edit Profile"),
@@ -39,6 +50,7 @@ class UserForm extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
+                initialValue: _formData['name'],
                 onSaved: (value) => _formData["name"] = value,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -50,6 +62,7 @@ class UserForm extends StatelessWidget {
                 ),
               ),
               TextFormField(
+                initialValue: _formData['email'],
                 onSaved: (value) => _formData["email"] = value,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
@@ -61,6 +74,7 @@ class UserForm extends StatelessWidget {
                 ),
               ),
               TextFormField(
+                initialValue: _formData['profileURL'],
                 onSaved: (value) => _formData["profileURL"] = value,
                 decoration: InputDecoration(
                   labelText: "Avatar URL",
