@@ -25,7 +25,9 @@ class UsersProvider with ChangeNotifier {
     }
 
     //edit user
-    if (user.id.trim().isNotEmpty && _items.containsKey(user.id)) {
+    if (user.id != null &&
+        user.id.trim().isNotEmpty &&
+        _items.containsKey(user.id)) {
       _items.update(
         user.id,
         (_) => User(
