@@ -33,7 +33,34 @@ class UserTile extends StatelessWidget {
             IconButton(
               color: Theme.of(context).errorColor,
               icon: Icon(Icons.delete),
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    title: Text("Delete User"),
+                    content: Text("Confirm deletion?"),
+                    actions: [
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                        },
+                        child: Text("No"),
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Text("Yes"),
+                      ),
+                    ],
+                  ),
+                ).then((confirmed) {
+                  if (confirmed) {
+                    Provider.of<UsersProvider>(context, listen: false)
+                        .remove(user);
+                  }
+                });
+              },
             ),
           ],
         ),
