@@ -49,4 +49,12 @@ class UsersProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  //remove user
+  void remove(User user) {
+    if (user != null && user.id != null) {
+      _items.remove(user.id);
+      notifyListeners();
+    }
+  }
 }

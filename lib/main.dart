@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simpleFlutterCRUD/Routes/app_routes.dart';
 import 'package:simpleFlutterCRUD/provider/users_provider.dart';
+import 'package:simpleFlutterCRUD/screens/user_form.dart';
 import 'package:simpleFlutterCRUD/screens/user_list.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +17,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Simple Flutter CRUD',
         debugShowCheckedModeBanner: false,
-        home: UserList(),
+        routes: {
+          AppRoutes.HOME: (context) => UserList(),
+          AppRoutes.USER_FORM: (context) => UserForm()
+        },
       ),
     );
   }

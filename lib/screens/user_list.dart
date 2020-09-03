@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:simpleFlutterCRUD/Routes/app_routes.dart';
 import 'package:simpleFlutterCRUD/models/user.dart';
 import 'package:simpleFlutterCRUD/provider/users_provider.dart';
 import 'package:simpleFlutterCRUD/widgets/user_tile.dart';
@@ -21,7 +22,9 @@ class UserList extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.USER_FORM);
+        },
       ),
     );
   }

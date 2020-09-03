@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simpleFlutterCRUD/Routes/app_routes.dart';
 import 'package:simpleFlutterCRUD/models/user.dart';
+import 'package:simpleFlutterCRUD/provider/users_provider.dart';
 
 class UserTile extends StatelessWidget {
   final User user;
@@ -22,12 +25,17 @@ class UserTile extends StatelessWidget {
             IconButton(
               color: Colors.orange,
               icon: Icon(Icons.edit),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.USER_FORM,
+                    arguments: user);
+              },
             ),
             IconButton(
               color: Theme.of(context).errorColor,
               icon: Icon(Icons.delete),
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<UsersProvider>(context).remove(user);
+              },
             ),
           ],
         ),
