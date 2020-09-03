@@ -20,7 +20,7 @@ class UserTile extends StatelessWidget {
         child: Row(
           children: [
             IconButton(
-              color: Theme.of(context).accentColor,
+              color: Colors.orange,
               icon: Icon(Icons.edit),
               onPressed: () {},
             ),

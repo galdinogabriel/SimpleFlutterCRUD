@@ -17,6 +17,10 @@ class UserList extends StatelessWidget {
           return UserTile(users.values.elementAt(index));
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
     );
   }
 }

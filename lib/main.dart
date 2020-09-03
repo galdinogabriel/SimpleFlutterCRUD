@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simpleFlutterCRUD/provider/users_provider.dart';
 import 'package:simpleFlutterCRUD/screens/user_list.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,15 +10,13 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Simple Flutter CRUD',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-        accentColor: Colors.orange,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return ChangeNotifierProvider(
+      create: (context) => UsersProvider(),
+      child: MaterialApp(
+        title: 'Simple Flutter CRUD',
+        debugShowCheckedModeBanner: false,
+        home: UserList(),
       ),
-      home: UserList(),
     );
   }
 }
