@@ -3,12 +3,19 @@ import 'package:provider/provider.dart';
 import 'package:simpleFlutterCRUD/models/user.dart';
 import 'package:simpleFlutterCRUD/provider/users_provider.dart';
 
-class UserForm extends StatelessWidget {
+class UserForm extends StatefulWidget {
+  @override
+  _UserFormState createState() => _UserFormState();
+}
+
+class _UserFormState extends State<UserForm> {
   final _form = GlobalKey<FormState>();
+
   final Map<String, Object> _formData = {};
 
   void _loadFormData(User user) {
     if (user != null) {
+      _formData['id'] = user.id;
       _formData['name'] = user.name;
       _formData['email'] = user.email;
       _formData['profileURL'] = user.profileAvatar;
@@ -26,19 +33,16 @@ class UserForm extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () {
-              final isValid = _form.currentState.validate();
-              if (isValid) {
-                _form.currentState.save();
-                Navigator.of(context).pop();
-                Provider.of<UsersProvider>(context, listen: false).put(
-                  User(
-                    id: _formData['id'],
-                    name: _formData['name'],
-                    email: _formData['email'],
-                    profileAvatar: _formData['profileURL'],
-                  ),
-                );
-              }
+              _form.currentState.save();
+              Navigator.of(context).pop();
+              Provider.of<UsersProvider>(context, listen: false).put(
+                User(
+                  id: _formData['id'],
+                  name: _formData['name'],
+                  email: _formData['email'],
+                  profileAvatar: _formData['profileURL'],
+                ),
+              );
             },
           )
         ],
@@ -52,11 +56,6 @@ class UserForm extends StatelessWidget {
               TextFormField(
                 initialValue: _formData['name'],
                 onSaved: (value) => _formData["name"] = value,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Empty name";
-                  }
-                },
                 decoration: InputDecoration(
                   labelText: "Name",
                 ),
@@ -64,11 +63,6 @@ class UserForm extends StatelessWidget {
               TextFormField(
                 initialValue: _formData['email'],
                 onSaved: (value) => _formData["email"] = value,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return "Empty e-mail";
-                  }
-                },
                 decoration: InputDecoration(
                   labelText: "E-mail",
                 ),
