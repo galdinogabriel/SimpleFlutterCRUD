@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:simpleFlutterCRUD/models/user.dart';
 import 'package:simpleFlutterCRUD/provider/users_provider.dart';
 import 'package:simpleFlutterCRUD/widgets/user_tile.dart';
 
