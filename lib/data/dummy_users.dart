@@ -13,7 +13,7 @@ const DUMMY_USERS = {
     name: 'Carl',
     email: 'carl@example.com.br',
     profileAvatar:
-        'https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.pngg',
+        'https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png',
   ),
   '3': const User(
       id: '3',
